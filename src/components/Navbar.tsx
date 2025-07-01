@@ -102,7 +102,7 @@ const Navbar = () => {
             <img 
               src="/images/logo.png" 
               alt="MedGAN Logo" 
-              className={`h-30 sm:h-20 w-auto object-contain transition-all duration-300 ${
+              className={`h-10 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 ${
                 isScrolled ? "scale-95" : "scale-100"
               }`}
             />
