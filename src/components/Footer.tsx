@@ -1,34 +1,64 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Linkedin, Youtube, X } from "lucide-react";
+import { Facebook, Linkedin, Youtube, X, Instagram, Globe, Mail } from "lucide-react";
 
 const Footer = () => {
-  return (
-    <footer className="bg-white py-12 px-6 md:px-8 border-t border-gray-100">
+  return (    <footer className="bg-white py-12 px-6 md:px-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+          <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center mb-6">
               <Link to="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-medgan-blue to-medgan-dark-blue">
                 MedGAN
               </Link>
             </div>
-            <p className="text-gray-600 mb-6 max-w-md">
+            <p className="text-gray-600 mb-6 max-w-md leading-relaxed">
               Revolutionizing industries with next-generation AI solutions, we leverage advanced generative models and deep expertise to deliver transformative tools that empower professionals.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="w-8 h-8 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors">
-                <Facebook className="w-4 h-4" />
+            <div className="flex flex-wrap gap-3">
+              <a 
+                href="https://www.linkedin.com/company/medgan" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                aria-label="Follow us on LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors">
-                <X className="w-4 h-4" />
+              <a 
+                href="https://www.instagram.com/medgan.ai" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                aria-label="Follow us on Instagram"
+              >
+                <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors">
-                <Linkedin className="w-4 h-4" />
+              <a 
+                href="https://x.com/medganai" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                aria-label="Follow us on X (Twitter)"
+              >
+                <X className="w-5 h-5" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors">
-                <Youtube className="w-4 h-4" />
+              <a 
+                href="http://www.medgan.co" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                aria-label="Visit our website"
+              >
+                <Globe className="w-5 h-5" />
+              </a>
+              <a 
+                href="mailto:contact@medgan.co" 
+                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                aria-label="Email us at contact@medgan.co"
+              >
+                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -53,15 +83,19 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          
-          <div>
+            <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-600 hover:text-medgan-blue transition-colors">About Us</Link>
-              </li>
-              <li>
-                <Link to="/" className="text-gray-600 hover:text-medgan-blue transition-colors">Team</Link>
+                <button 
+                  onClick={() => {
+                    const element = document.querySelector('#about');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-gray-600 hover:text-medgan-blue transition-colors focus:outline-none focus:text-medgan-blue text-left"
+                >
+                  About Us
+                </button>
               </li>
               <li>
                 <Link to="/careers" className="text-gray-600 hover:text-medgan-blue transition-colors">Careers</Link>
@@ -79,13 +113,21 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Support</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-600 hover:text-medgan-blue transition-colors">Contact Us</Link>
+                <button 
+                  onClick={() => {
+                    const element = document.querySelector('#contact');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-gray-600 hover:text-medgan-blue transition-colors focus:outline-none focus:text-medgan-blue text-left"
+                >
+                  Contact Us
+                </button>
               </li>
               <li>
                 <Link to="/faqs" className="text-gray-600 hover:text-medgan-blue transition-colors">FAQs</Link>
               </li>
               <li>
-                <Link to="/" className="text-gray-600 hover:text-medgan-blue transition-colors">Documentation</Link>
+                <a href="mailto:contact@medgan.co" className="text-gray-600 hover:text-medgan-blue transition-colors">Documentation</a>
               </li>
               <li>
                 <Link to="/privacy-policy" className="text-gray-600 hover:text-medgan-blue transition-colors">Privacy Policy</Link>

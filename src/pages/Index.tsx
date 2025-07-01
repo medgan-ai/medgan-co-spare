@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import FeaturesSection from "@/components/FeaturesSection";
-import TeamSection from "@/components/TeamSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import StatsCounter from "@/components/StatsCounter";
 import FAQAccordion from "@/components/FAQAccordion";
@@ -21,19 +20,17 @@ const Index = () => {
     const cleanup = observeScrollAnimation();
     return cleanup;
   }, []);
-
   return (
     <div className="min-h-screen flex flex-col">
       <PageViewTracker page="home" />
       <Navbar />
-      <main>
+      <main className="flex-1">
         <HeroSection />
         <AboutSection />
         <StatsCounter />
         <FeaturesSection />
         <AIPlayground />
         <TestimonialsSection />
-        <TeamSection />
         <NewsletterSubscription />
         <FAQAccordion />
         <ContactSection />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observeScrollAnimation } from "@/utils/animation";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Clock, Facebook, Linkedin, Youtube, X } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, Linkedin, Youtube, X, Instagram, Globe } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -182,11 +182,12 @@ const ContactSection = () => {
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-medgan-blue/10 flex items-center justify-center">
                     <Mail className="w-5 h-5 text-medgan-blue" />
-                  </div>
-                  <div className="ml-4">
+                  </div>                  <div className="ml-4">
                     <h4 className="text-lg font-semibold mb-1">Email</h4>
                     <p className="text-gray-600">
-                      info@medgan.ai
+                      <a href="mailto:contact@medgan.co" className="hover:text-medgan-blue transition-colors">
+                        contact@medgan.co
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -204,21 +205,51 @@ const ContactSection = () => {
                   </div>
                 </div>
               </div>
-              
-              <div className="mt-8 pt-8 border-t border-gray-200">
+                <div className="mt-8 pt-8 border-t border-gray-200">
                 <h4 className="text-lg font-semibold mb-4">Connect with Us</h4>
-                <div className="flex space-x-4">
-                  <a href="#" className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors">
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors">
-                    <X className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors">
+                <div className="flex flex-wrap gap-3">
+                  <a 
+                    href="https://www.linkedin.com/company/medgan" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                    aria-label="Follow us on LinkedIn"
+                  >
                     <Linkedin className="w-5 h-5" />
                   </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors">
-                    <Youtube className="w-5 h-5" />
+                  <a 
+                    href="https://www.instagram.com/medgan.ai" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                    aria-label="Follow us on Instagram"
+                  >
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href="https://x.com/medganai" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                    aria-label="Follow us on X (Twitter)"
+                  >
+                    <X className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href="http://www.medgan.co" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                    aria-label="Visit our website"
+                  >
+                    <Globe className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href="mailto:contact@medgan.co" 
+                    className="w-10 h-10 rounded-full bg-medgan-blue/10 flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
+                    aria-label="Email us at contact@medgan.co"
+                  >
+                    <Mail className="w-5 h-5" />
                   </a>
                 </div>
               </div>

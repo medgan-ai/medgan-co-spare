@@ -27,22 +27,27 @@ const HeroSection = () => {
             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl">
               MedGAN transforms complex data into actionable insights using advanced 
               generative AI models, empowering organizations across all industries.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">              <Button
-              className="bg-medgan-dark-blue hover:bg-medgan-purple text-white px-8 py-6 rounded-md transition-all"
-              onClick={() => window.location.href = "/#about"}
-            >
-              Learn More
-            </Button>
+            </p>            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                className="bg-medgan-dark-blue hover:bg-medgan-purple text-white px-8 py-6 rounded-md transition-all"
+                onClick={() => {
+                  const element = document.querySelector('#about');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Learn More
+              </Button>
 
               <Button
-              variant="outline"
-              className="border-medgan-purple text-medgan-purple hover:bg-medgan-light-purple/20 px-8 py-6 rounded-md transition-all"
-              onClick={() => window.location.href = "/#contact"}
-            >
-              Schedule Demo
-            </Button>
-
+                variant="outline"
+                className="border-medgan-purple text-medgan-purple hover:bg-medgan-light-purple/20 px-8 py-6 rounded-md transition-all"
+                onClick={() => {
+                  const element = document.querySelector('#contact');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Schedule Demo
+              </Button>
             </div>
           </div>
           
