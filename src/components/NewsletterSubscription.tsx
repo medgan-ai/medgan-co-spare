@@ -55,18 +55,16 @@ const NewsletterSubscription: React.FC = () => {
           onConflict: 'email'
         })
         .select()
-        .single();
-
-      if (error) {
+        .single();      if (error) {
         console.error('Insert error:', error);
         throw error;
       }
       
-      console.log('Subscription successful:', insertData);      toast({
+      toast({
         title: "Subscription successful!",
         description: "Thank you! You've been added to our newsletter.",
       });
-        form.reset();    } catch (error: any) {
+        form.reset();} catch (error: any) {
       console.error("Newsletter subscription error:", error);
       console.error("Error details:", {
         message: error.message,

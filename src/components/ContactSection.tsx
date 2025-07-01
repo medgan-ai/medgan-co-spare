@@ -63,7 +63,6 @@ const ContactSection = () => {
     setIsSubmitting(true);
     try {
       // First test database connection
-      console.log('Testing database connection...');
       const { error: connectionError } = await supabase
         .from('contact_submissions')
         .select('count', { count: 'exact', head: true });
@@ -81,8 +80,7 @@ const ContactSection = () => {
       }
 
       // Insert form data into Supabase
-      console.log('Inserting data:', data);
-      const now = new Date().toISOString();      const insertData = {
+      const now = new Date().toISOString();const insertData = {
         id: `contact_${Date.now()}`, // Generate unique ID
         name: data.name,
         email: data.email,
@@ -93,10 +91,7 @@ const ContactSection = () => {
         budget: data.budget || '',
         timeline: data.timeline || '',
         createdAt: now,
-        updatedAt: now,
-      };
-      
-      console.log('Insert payload:', insertData);
+        updatedAt: now,      };
       
       const { data: result, error } = await supabase
         .from("contact_submissions")
@@ -104,7 +99,7 @@ const ContactSection = () => {
         .select()
         .single();
 
-      if (error) {        console.error('Insert error details:', {
+      if (error) {console.error('Insert error details:', {
           message: error.message,
           code: error.code,
           details: error.details,

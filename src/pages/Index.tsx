@@ -12,7 +12,6 @@ import NewsletterSubscription from "@/components/NewsletterSubscription";
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import PageViewTracker from "@/components/PageViewTracker";
-import EnvironmentStatus from "@/components/EnvironmentStatus";
 import { Toaster } from "@/components/ui/toaster";
 import { observeScrollAnimation } from "@/utils/animation";
 
@@ -33,11 +32,9 @@ const Index = () => {
         <TestimonialsSection />
         <NewsletterSubscription />
         <FAQAccordion />
-        <ContactSection />
-      </main>
+        <ContactSection />      </main>
       <Footer />
       <BackToTop />
-      <EnvironmentStatus />
       <Toaster />
     </div>
   );

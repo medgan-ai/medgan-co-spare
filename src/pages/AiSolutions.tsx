@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import DatabaseStatus from "@/components/DatabaseStatus";
-import DatabaseDebugger from "@/components/DatabaseDebugger";
 import PageViewTracker from "@/components/PageViewTracker";
 import { Button } from "@/components/ui/button";
 import { observeScrollAnimation } from "@/utils/animation";
@@ -163,24 +161,7 @@ const AiSolutions = () => {
                 </div>
               ))}
             </div>          </div>
-        </section>
-
-        {/* Database Status Section */}
-        <section className="py-16 px-6 md:px-8 bg-gray-50">
-          <div className="container max-w-7xl mx-auto">            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">System Status</h2>
-              <p className="text-gray-600">Real-time database connection and analytics</p>
-            </div>
-            <DatabaseStatus />
-            
-            {/* Database Debugger for troubleshooting */}
-            <div className="mt-12">
-              <DatabaseDebugger />
-            </div>
-          </div>
-        </section>
-        
-        {/* CTA Section */}
+        </section>        {/* CTA Section */}
         <section className="py-20 px-6 md:px-8 bg-medgan-blue text-white">
           <div className="container max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center justify-between">
