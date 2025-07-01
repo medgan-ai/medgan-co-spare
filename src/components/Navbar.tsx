@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -23,13 +22,13 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
-    // Small delay to ensure the menu closes before scrolling
     setTimeout(() => {
       const element = document.querySelector(href);
       if (element) {
@@ -37,14 +36,17 @@ const Navbar = () => {
       }
     }, 100);
   };
+
   const MobileMenu = () => (
     <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
       <SheetContent side="right" className="w-full sm:max-w-sm p-0 bg-white">
         <div className="flex flex-col h-full justify-center items-center space-y-6 p-8">
-          <div className="text-center mb-4">
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-medgan-purple to-medgan-dark-blue">
-              MedGAN
-            </span>
+          <div className="text-center mb-10">
+            <img 
+              src="/images/logo.png" 
+              alt="MedGAN Logo" 
+              className="h-10 w-auto object-contain"
+            />
           </div>
           <button
             onClick={() => handleNavClick('#about')}
@@ -86,7 +88,8 @@ const Navbar = () => {
     </Sheet>
   );
 
-  return (    <nav
+  return (
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "glass-morphism py-2"
@@ -96,10 +99,16 @@ const Navbar = () => {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-auto">
           <Link to="/" className="flex items-center">
-            <span className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-medgan-purple to-medgan-dark-blue">
-              MedGAN
-            </span>
-          </Link>          {/* Desktop navigation */}
+            <img 
+              src="/images/logo.png" 
+              alt="MedGAN Logo" 
+              className={`h-30 sm:h-20 w-auto object-contain transition-all duration-300 ${
+                isScrolled ? "scale-95" : "scale-100"
+              }`}
+            />
+          </Link>
+
+          {/* Desktop navigation */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             <button
               onClick={() => handleNavClick('#about')}

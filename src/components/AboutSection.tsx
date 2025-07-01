@@ -71,83 +71,117 @@ const AboutSection = () => {
         </div>
         
         <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-on-scroll">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Our Mission</h3>
-            <p className="text-gray-600 mb-6">
-              At MedGAN, we're on a mission to revolutionize industries through advanced artificial intelligence. 
-              Our team of AI engineers and machine learning specialists work collaboratively to develop innovative 
-              solutions that address complex challenges across all sectors.
-            </p>
-            <p className="text-gray-600">
-              We believe that AI-powered innovations can significantly transform business operations, improve 
-              decision-making processes, and create new possibilities. By combining cutting-edge AI technology 
-              with domain expertise, we're creating a future where intelligent systems enhance human capabilities 
-              and drive progress in every field.
-            </p>
-          </div>
-          
-          <div className="glass-morphism rounded-2xl overflow-hidden p-1 animate-on-scroll">
-            <div className="bg-gradient-to-tr from-medgan-blue/10 to-medgan-light-blue/30 p-8 rounded-xl">
-              <div className="space-y-8">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-white rounded-full p-2 shadow-md">
-                    <div className="w-8 h-8 bg-medgan-blue rounded-full flex items-center justify-center text-white font-bold">
-                      1
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-lg font-semibold mb-1">Research & Development</h4>
-                    <p className="text-gray-600">
-                      Pioneering new AI approaches for diverse industry applications.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-white rounded-full p-2 shadow-md">
-                    <div className="w-8 h-8 bg-medgan-blue rounded-full flex items-center justify-center text-white font-bold">
-                      2
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-lg font-semibold mb-1">Industry Validation</h4>
-                    <p className="text-gray-600">
-                      Rigorous testing to ensure efficacy and reliability in real-world settings.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-white rounded-full p-2 shadow-md">
-                    <div className="w-8 h-8 bg-medgan-blue rounded-full flex items-center justify-center text-white font-bold">
-                      3
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-lg font-semibold mb-1">Integration</h4>
-                    <p className="text-gray-600">
-                      Seamless implementation into existing systems and workflows.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-white rounded-full p-2 shadow-md">
-                    <div className="w-8 h-8 bg-medgan-blue rounded-full flex items-center justify-center text-white font-bold">
-                      4
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-lg font-semibold mb-1">Continuous Improvement</h4>
-                    <p className="text-gray-600">
-                      Ongoing refinement based on performance analytics and feedback.
-                    </p>
-                  </div>
-                </div>
-              </div>
+  <div className="animate-on-scroll">
+    <h3 className="text-2xl md:text-3xl font-bold mb-4">Our Mission</h3>
+    <p className="text-gray-600 mb-6">
+      To democratize artificial intelligence by making advanced AI solutions accessible to businesses of all sizes across the MENA region. 
+      We believe every organization deserves the competitive advantage that comes with intelligent automation and autonomous AI agents.
+    </p>
+    
+    <div className="space-y-4">
+      <div className="flex items-start">
+        <div className="flex-shrink-0 mt-1">
+          <svg className="w-5 h-5 text-medgan-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <div className="ml-3">
+          <p className="text-gray-600">
+            Empower businesses with cutting-edge AI technology
+          </p>
+        </div>
+      </div>
+      
+      <div className="flex items-start">
+        <div className="flex-shrink-0 mt-1">
+          <svg className="w-5 h-5 text-medgan-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <div className="ml-3">
+          <p className="text-gray-600">
+            Bridge the AI gap in the MENA region
+          </p>
+        </div>
+      </div>
+      
+      <div className="flex items-start">
+        <div className="flex-shrink-0 mt-1">
+          <svg className="w-5 h-5 text-medgan-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <div className="ml-3">
+          <p className="text-gray-600">
+            Create sustainable competitive advantages
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div className="glass-morphism rounded-2xl overflow-hidden p-1 animate-on-scroll">
+    <div className="bg-gradient-to-tr from-medgan-blue/10 to-medgan-light-blue/30 p-8 rounded-xl">
+      <div className="space-y-8">
+        <div className="flex items-start">
+          <div className="flex-shrink-0 bg-white rounded-full p-2 shadow-md">
+            <div className="w-8 h-8 bg-medgan-blue rounded-full flex items-center justify-center text-white font-bold">
+              1
             </div>
           </div>
+          <div className="ml-4">
+            <h4 className="text-lg font-semibold mb-1">Research & Development</h4>
+            <p className="text-gray-600">
+              Pioneering new AI approaches tailored for MENA market needs.
+            </p>
+          </div>
         </div>
+        
+        <div className="flex items-start">
+          <div className="flex-shrink-0 bg-white rounded-full p-2 shadow-md">
+            <div className="w-8 h-8 bg-medgan-blue rounded-full flex items-center justify-center text-white font-bold">
+              2
+            </div>
+          </div>
+          <div className="ml-4">
+            <h4 className="text-lg font-semibold mb-1">Regional Adaptation</h4>
+            <p className="text-gray-600">
+              Customizing solutions for Arabic language and local business contexts.
+            </p>
+          </div>
+        </div>
+        
+        <div className="flex items-start">
+          <div className="flex-shrink-0 bg-white rounded-full p-2 shadow-md">
+            <div className="w-8 h-8 bg-medgan-blue rounded-full flex items-center justify-center text-white font-bold">
+              3
+            </div>
+          </div>
+          <div className="ml-4">
+            <h4 className="text-lg font-semibold mb-1">Accessible Integration</h4>
+            <p className="text-gray-600">
+              Seamless implementation for businesses at any digital maturity level.
+            </p>
+          </div>
+        </div>
+        
+        <div className="flex items-start">
+          <div className="flex-shrink-0 bg-white rounded-full p-2 shadow-md">
+            <div className="w-8 h-8 bg-medgan-blue rounded-full flex items-center justify-center text-white font-bold">
+              4
+            </div>
+          </div>
+          <div className="ml-4">
+            <h4 className="text-lg font-semibold mb-1">Continuous Localization</h4>
+            <p className="text-gray-600">
+              Ongoing refinement based on regional performance data and feedback.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );

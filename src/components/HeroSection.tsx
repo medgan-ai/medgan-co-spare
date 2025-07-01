@@ -22,11 +22,11 @@ const HeroSection = () => {
               Revolutionizing Industries with AI
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              AI-Powered Innovations for a Smarter Tomorrow
+              Transform Your Business with Agentic AI
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl">
-              MedGAN transforms complex data into actionable insights using advanced 
-              generative AI models, empowering organizations across all industries.
+              Leading Agentic AI provider in MENA, building intelligent autonomous agents that transform business operations and growth.
+
             </p>            <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 className="bg-medgan-dark-blue hover:bg-medgan-purple text-white px-8 py-6 rounded-md transition-all"
