@@ -1,9 +1,9 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { env } from "@/lib/env";
 
-// It's recommended to store API keys in environment variables.
-const apiKey = import.meta.env.VITE_GOOGLE_API_KEY || "AIzaSyAIgHMrwy6gtR243nE2C0KWy8NWuOLCFe8";
-const genAI = new GoogleGenerativeAI(apiKey);
+// Use environment configuration for API key
+const genAI = new GoogleGenerativeAI(env.ai.googleApiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export type Language = "english" | "arabic";
