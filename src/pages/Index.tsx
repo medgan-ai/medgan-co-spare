@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -13,6 +12,7 @@ import AIPlayground from "@/components/AIPlayground";
 import NewsletterSubscription from "@/components/NewsletterSubscription";
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
+import PageViewTracker from "@/components/PageViewTracker";
 import { Toaster } from "@/components/ui/toaster";
 import { observeScrollAnimation } from "@/utils/animation";
 
@@ -24,6 +24,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <PageViewTracker page="home" />
       <Navbar />
       <main>
         <HeroSection />

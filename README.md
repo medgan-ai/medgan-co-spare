@@ -1,69 +1,149 @@
-# Welcome to your Lovable project
+# MedGAN - AI-Powered Innovation Platform
 
-## Project info
+A modern, beautiful React web application showcasing AI solutions with a stunning purple-blue color palette.
 
-**URL**: https://lovable.dev/projects/a71a69be-a973-45ba-bcd3-fc0da44e6719
+## 🎨 Color Palette
 
-## How can I edit this code?
+This website uses a beautiful color scheme from [ColorHunt](https://colorhunt.co/palette/1230ae6c48c5c68fe6fff7f7):
 
-There are several ways of editing your application.
+- **Cream** (`#FFF7F7`) - Light background and subtle elements
+- **Light Purple** (`#C68FE6`) - Secondary highlights and accents
+- **Purple** (`#6C48C5`) - Primary interactive elements
+- **Dark Blue** (`#1230AE`) - Primary buttons and strong accents
 
-**Use Lovable**
+## �️ Database Integration
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a71a69be-a973-45ba-bcd3-fc0da44e6719) and start prompting.
+This application is fully integrated with **Supabase** for backend functionality:
 
-Changes made via Lovable will be committed automatically to this repo.
+### Database Tables
 
-**Use your preferred IDE**
+- **newsletter_subscriptions** - Email newsletter signups
+- **contact_submissions** - Contact form submissions  
+- **testimonials** - Client testimonials and reviews
+- **website_stats** - Real-time website statistics
+- **page_views** - Analytics and page tracking
+- **blog_posts** - Blog content management
+- **job_postings** - Career opportunities
+- **job_applications** - Job application submissions
+- **case_studies** - Portfolio case studies
+- **admin_users** - Administrative user management
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Features with Database Integration
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- ✅ **Newsletter Subscription** - Stores emails in database
+- ✅ **Contact Forms** - Saves inquiries to database
+- ✅ **Dynamic Testimonials** - Fetches client reviews from database
+- ✅ **Live Statistics** - Real-time stats counter with database updates
+- ✅ **Page Analytics** - Tracks page views and user behavior
+- 🔄 **Fallback System** - Uses static data if database is unavailable
 
-Follow these steps:
+### Environment Setup
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. Copy the environment template:
+   ```bash
+   cp .env.example .env
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Update the environment variables with your Supabase credentials:
+   ```bash
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+## �🚀 Getting Started
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### Prerequisites
 
-**Edit a file directly in GitHub**
+- Node.js (v18 or higher) or Bun
+- npm, yarn, pnpm, or bun
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Installation
 
-**Use GitHub Codespaces**
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd medgan-co-spare
+   ```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
 
-## What technologies are used for this project?
+3. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   bun dev
+   ```
 
-This project is built with .
+4. **Open your browser**
+   Navigate to [http://localhost:8080](http://localhost:8080)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📜 Available Scripts
 
-## How can I deploy this project?
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build in development mode
+- `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
 
-Simply open [Lovable](https://lovable.dev/projects/a71a69be-a973-45ba-bcd3-fc0da44e6719) and click on Share -> Publish.
+## 🛠️ Tech Stack
 
-## I want to use a custom domain - is that possible?
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Fast build tool
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful UI components
+- **Radix UI** - Accessible primitives
+- **Supabase** - Backend services
+- **Google Generative AI** - AI integration
+- **React Query** - Data fetching
+- **Lucide React** - Icons
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## 🎨 Design System
+
+### Color Usage
+
+- **Primary Actions**: Dark Blue (`#1230AE`)
+- **Secondary Actions**: Purple (`#6C48C5`)
+- **Highlights**: Light Purple (`#C68FE6`)
+- **Backgrounds**: Cream (`#FFF7F7`)
+
+### Components
+
+- Glass morphism effects with purple accents
+- Gradient backgrounds using the color palette
+- Hover states with smooth transitions
+- Modern typography with Inter font family
+
+## 📱 Features
+
+- Responsive design for all devices
+- Dark/light mode support
+- Smooth animations and transitions
+- AI-powered chatbot integration
+- Modern glass morphism UI effects
+- SEO optimized
+
+## 🌐 Live Demo
+
+The application runs on `http://localhost:8080` in development mode.
+
+## 📝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+Built with ❤️ using React, TypeScript, and Tailwind CSS

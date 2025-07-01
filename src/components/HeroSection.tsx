@@ -9,18 +9,16 @@ const HeroSection = () => {
     return cleanup;
   }, []);
 
-  return (
-    <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-8 relative overflow-hidden">
+  return (    <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-8 relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-medgan-light-blue/30 to-white/10"></div>
-        <div className="absolute top-20 left-40 w-72 h-72 rounded-full bg-medgan-blue/5 animate-pulse-slow blur-3xl"></div>
-        <div className="absolute bottom-20 right-40 w-80 h-80 rounded-full bg-medgan-blue/5 animate-float blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-medgan-cream/50 to-medgan-light-purple/10"></div>
+        <div className="absolute top-20 left-40 w-72 h-72 rounded-full bg-medgan-purple/10 animate-pulse-slow blur-3xl"></div>
+        <div className="absolute bottom-20 right-40 w-80 h-80 rounded-full bg-medgan-dark-blue/10 animate-float blur-3xl"></div>
       </div>
       
       <div className="container max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-on-scroll">
-            <div className="inline-block mb-4 px-3 py-1 rounded-full bg-medgan-light-blue border border-medgan-blue/20 text-sm font-medium text-medgan-blue">
+          <div className="animate-on-scroll">            <div className="inline-block mb-4 px-3 py-1 rounded-full bg-medgan-light-purple/20 border border-medgan-purple/30 text-sm font-medium text-medgan-dark-blue">
               Revolutionizing Industries with AI
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
@@ -30,9 +28,8 @@ const HeroSection = () => {
               MedGAN transforms complex data into actionable insights using advanced 
               generative AI models, empowering organizations across all industries.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-              className="bg-medgan-blue hover:bg-medgan-dark-blue text-white px-8 py-6 rounded-md transition-all"
+            <div className="flex flex-col sm:flex-row gap-4">              <Button
+              className="bg-medgan-dark-blue hover:bg-medgan-purple text-white px-8 py-6 rounded-md transition-all"
               onClick={() => window.location.href = "/#about"}
             >
               Learn More
@@ -40,7 +37,7 @@ const HeroSection = () => {
 
               <Button
               variant="outline"
-              className="border-medgan-blue text-medgan-blue hover:bg-medgan-light-blue px-8 py-6 rounded-md transition-all"
+              className="border-medgan-purple text-medgan-purple hover:bg-medgan-light-purple/20 px-8 py-6 rounded-md transition-all"
               onClick={() => window.location.href = "/#contact"}
             >
               Schedule Demo

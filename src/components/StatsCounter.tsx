@@ -1,6 +1,7 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { supabase } from "@/integrations/supabase/client";
+import type { Tables } from "@/integrations/supabase/types";
 
 interface StatProps {
   value: number;
@@ -10,7 +11,10 @@ interface StatProps {
   duration?: number;
 }
 
-const stats = [
+type WebsiteStats = Tables<'website_stats'>;
+
+// Fallback stats in case database is empty
+const fallbackStats = [
   { value: 98, label: "Client Satisfaction", suffix: "%" },
   { value: 150, label: "AI Models Deployed", prefix: "+" },
   { value: 35, label: "Industries Served", prefix: "+" },
@@ -69,6 +73,48 @@ const CounterAnimation = ({ value, prefix, suffix, duration = 2000 }: StatProps)
 
 const StatsCounter = () => {
   const isMobile = useIsMobile();
+  const [stats, setStats] = useState<StatProps[]>(fallbackStats);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('website_stats')
+          .select('*')
+          .order('createdAt', { ascending: false })
+          .limit(1)
+          .single();
+        
+        if (error) {
+          console.error("Error fetching stats:", error);
+          setStats(fallbackStats);
+        } else if (data) {
+          // Convert database data to display format
+          const formattedStats = [
+            { value: data.clientSatisfaction, label: "Client Satisfaction", suffix: "%" },
+            { value: data.projectsDelivered, label: "Projects Delivered", prefix: "+" },
+            { value: data.enterpriseClients, label: "Enterprise Clients", prefix: "+" },
+            { value: data.countersViewed, label: "Data Points Analyzed", suffix: "K+" },
+          ];
+          setStats(formattedStats);
+          
+          // Update the counters viewed count
+          await supabase
+            .from('website_stats')
+            .update({ countersViewed: data.countersViewed + 1 })
+            .eq('id', data.id);
+        }
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+        setStats(fallbackStats);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchStats();
+  }, []);
   
   return (
     <section className="section-padding bg-medgan-blue text-white relative overflow-hidden">

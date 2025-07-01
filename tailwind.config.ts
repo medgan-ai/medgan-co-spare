@@ -62,11 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-				medgan: {
-					'light-blue': '#E1F5FE',
-					'blue': '#0EA5E9',
-					'dark-blue': '#0C4A6E',
+				},				medgan: {
+					'cream': '#FFF7F7',        // Light Pink/Off-white
+					'light-purple': '#C68FE6', // Light Purple
+					'purple': '#6C48C5',       // Medium Purple
+					'dark-blue': '#1230AE',    // Dark Blue
+					// Legacy color mappings for backward compatibility
+					'light-blue': '#FFF7F7',   // Map to cream
+					'blue': '#6C48C5',         // Map to purple
 					'gray': '#F3F4F6',
 					'dark-gray': '#1F2937'
 				}

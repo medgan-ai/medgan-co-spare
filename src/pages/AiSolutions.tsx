@@ -1,7 +1,9 @@
-
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import DatabaseStatus from "@/components/DatabaseStatus";
+import DatabaseDebugger from "@/components/DatabaseDebugger";
+import PageViewTracker from "@/components/PageViewTracker";
 import { Button } from "@/components/ui/button";
 import { observeScrollAnimation } from "@/utils/animation";
 import { Brain, Database, Zap, LineChart, Code, ArrowRight } from "lucide-react";
@@ -12,9 +14,9 @@ const AiSolutions = () => {
     const cleanup = observeScrollAnimation();
     return cleanup;
   }, []);
-  
-  return (
+    return (
     <div className="min-h-screen flex flex-col">
+      <PageViewTracker page="ai-solutions" />
       <Navbar />
       <main>
         {/* Hero Section */}
@@ -160,6 +162,20 @@ const AiSolutions = () => {
                   </p>
                 </div>
               ))}
+            </div>          </div>
+        </section>
+
+        {/* Database Status Section */}
+        <section className="py-16 px-6 md:px-8 bg-gray-50">
+          <div className="container max-w-7xl mx-auto">            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">System Status</h2>
+              <p className="text-gray-600">Real-time database connection and analytics</p>
+            </div>
+            <DatabaseStatus />
+            
+            {/* Database Debugger for troubleshooting */}
+            <div className="mt-12">
+              <DatabaseDebugger />
             </div>
           </div>
         </section>

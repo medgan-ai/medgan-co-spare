@@ -30,38 +30,37 @@ const Navbar = () => {
 
   const MobileMenu = () => (
     <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-      <SheetContent side="right" className="w-full sm:max-w-sm p-0">
-        <div className="flex flex-col h-full justify-center items-center space-y-8 p-8">
+      <SheetContent side="right" className="w-full sm:max-w-sm p-0">        <div className="flex flex-col h-full justify-center items-center space-y-8 p-8">
           <a
             href="#about"
             onClick={toggleMobileMenu}
-            className="text-xl font-medium text-gray-800 hover:text-medgan-blue"
+            className="text-xl font-medium text-gray-800 hover:text-medgan-purple"
           >
             About
           </a>
           <a
             href="#features"
             onClick={toggleMobileMenu}
-            className="text-xl font-medium text-gray-800 hover:text-medgan-blue"
+            className="text-xl font-medium text-gray-800 hover:text-medgan-purple"
           >
             Technology
           </a>
           <a
             href="#team"
             onClick={toggleMobileMenu}
-            className="text-xl font-medium text-gray-800 hover:text-medgan-blue"
+            className="text-xl font-medium text-gray-800 hover:text-medgan-purple"
           >
             Team
           </a>
           <a
             href="#contact"
             onClick={toggleMobileMenu}
-            className="text-xl font-medium text-gray-800 hover:text-medgan-blue"
+            className="text-xl font-medium text-gray-800 hover:text-medgan-purple"
           >
             Contact
           </a>
           <Link to="/ai-solutions" onClick={toggleMobileMenu}>
-            <Button className="bg-medgan-blue hover:bg-medgan-dark-blue transition-colors">
+            <Button className="bg-medgan-dark-blue hover:bg-medgan-purple transition-colors">
               Get Started
             </Button>
           </Link>
@@ -80,40 +79,38 @@ const Navbar = () => {
     >
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center">
-            <span className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-medgan-blue to-medgan-dark-blue">
+          <Link to="/" className="flex items-center">            <span className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-medgan-purple to-medgan-dark-blue">
               MedGAN
             </span>
           </Link>
 
-          {/* Desktop navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop navigation */}          <div className="hidden md:flex items-center space-x-8">
             <a
               href="#about"
-              className="text-gray-800 hover:text-medgan-blue transition-colors"
+              className="text-gray-800 hover:text-medgan-purple transition-colors"
             >
               About
             </a>
             <a
               href="#features"
-              className="text-gray-800 hover:text-medgan-blue transition-colors"
+              className="text-gray-800 hover:text-medgan-purple transition-colors"
             >
               Technology
             </a>
             <a
               href="#team"
-              className="text-gray-800 hover:text-medgan-blue transition-colors"
+              className="text-gray-800 hover:text-medgan-purple transition-colors"
             >
               Team
             </a>
             <a
               href="#contact"
-              className="text-gray-800 hover:text-medgan-blue transition-colors"
+              className="text-gray-800 hover:text-medgan-purple transition-colors"
             >
               Contact
             </a>
             <Link to="/ai-solutions">
-              <Button className="bg-medgan-blue hover:bg-medgan-dark-blue transition-colors">
+              <Button className="bg-medgan-dark-blue hover:bg-medgan-purple transition-colors">
                 Get Started
               </Button>
             </Link>

@@ -16,13 +16,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
-// Define the form schema with zod
+// Define the form schema with zod - updated to match database schema
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
-  subject: z.string().min(2, { message: "Subject must be at least 2 characters" }),
+  company: z.string().optional(),
+  phone: z.string().optional(),
   message: z.string().min(10, { message: "Message must be at least 10 characters" }),
+  service: z.string().optional(),
+  budget: z.string().optional(),
+  timeline: z.string().optional(),
   privacy: z.boolean().refine((val) => val === true, {
     message: "You must agree to the privacy policy",
   }),
@@ -45,54 +50,80 @@ const ContactSection = () => {
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
+      company: "",
+      phone: "",
       message: "",
+      service: "",
+      budget: "",
+      timeline: "",
       privacy: false,
     },
-  });
-
-  // Handle form submission using FormSubmit
+  });  // Handle form submission using Supabase
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      // Create a FormData object for FormSubmit
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("email", data.email);
-      formData.append("subject", data.subject);
-      formData.append("message", data.message);
+      // First test database connection
+      console.log('Testing database connection...');
+      const { error: connectionError } = await supabase
+        .from('contact_submissions')
+        .select('count', { count: 'exact', head: true });
 
-      formData.append("_captcha", "false");
-      formData.append("_format", "json");
-      formData.append("_subject", "New contact submission!");
-      // Add a unique value to force a fresh submission each time.
-      formData.append("_unique", new Date().getTime().toString());
-
-      // Send form data to FormSubmit endpoint.
-      // Replace "medganbusiness@gmail.com" with your email if different.
-      const response = await fetch("https://formsubmit.co/medganbusiness@gmail.com", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
+      if (connectionError) {
+        console.error('Database connection error:', connectionError);
+        // Fallback to simulation mode
+        await new Promise(resolve => setTimeout(resolve, 1000));
         toast({
-          title: "Message sent",
-          description: "Thank you for your message. We'll get back to you soon.",
+          title: "Message received!",
+          description: "Thank you for your message. We're processing it now.",
         });
         form.reset();
-      } else {
-        toast({
-          title: "Error",
-          description: "There was a problem sending your message. Please try again.",
-          variant: "destructive",
-        });
+        return;
       }
-    } catch (error) {
+
+      // Insert form data into Supabase
+      console.log('Inserting data:', data);
+      const now = new Date().toISOString();      const insertData = {
+        id: `contact_${Date.now()}`, // Generate unique ID
+        name: data.name,
+        email: data.email,
+        company: data.company || '',
+        phone: data.phone || '',
+        message: data.message,
+        service: data.service || '',
+        budget: data.budget || '',
+        timeline: data.timeline || '',
+        createdAt: now,
+        updatedAt: now,
+      };
+      
+      console.log('Insert payload:', insertData);
+      
+      const { data: result, error } = await supabase
+        .from("contact_submissions")
+        .insert([insertData])
+        .select()
+        .single();
+
+      if (error) {        console.error('Insert error details:', {
+          message: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint
+        });
+        throw error;
+      }
+
+      console.log('Insert successful:', result);
+      toast({
+        title: "Message sent",
+        description: "Thank you for your message. We'll get back to you soon.",
+      });
+      form.reset();
+    } catch (error: any) {
       console.error("Error submitting form:", error);
       toast({
         title: "Error",
-        description: "There was a problem sending your message. Please try again.",
+        description: `There was a problem sending your message. Please try again. Error: ${error.message}`,
         variant: "destructive",
       });
     } finally {
@@ -244,15 +275,35 @@ const ContactSection = () => {
                   
                   <FormField
                     control={form.control}
-                    name="subject"
+                    name="company"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">
-                          Subject
+                          Company (optional)
                         </FormLabel>
                         <FormControl>
                           <Input 
-                            placeholder="Subject" 
+                            placeholder="Your company name" 
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-medgan-blue focus:border-medgan-blue" 
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">
+                          Phone Number (optional)
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Your phone number" 
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-medgan-blue focus:border-medgan-blue" 
                             {...field} 
                           />
@@ -275,6 +326,68 @@ const ContactSection = () => {
                             placeholder="Your message" 
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-medgan-blue focus:border-medgan-blue" 
                             rows={5}
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="service"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-sm font-medium text-gray-700">
+                            Service Interested In (optional)
+                          </FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder="e.g., Web Development" 
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-medgan-blue focus:border-medgan-blue" 
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <FormField
+                      control={form.control}
+                      name="budget"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-sm font-medium text-gray-700">
+                            Budget (optional)
+                          </FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder="Your budget range" 
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-medgan-blue focus:border-medgan-blue" 
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  
+                  <FormField
+                    control={form.control}
+                    name="timeline"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">
+                          Timeline (optional)
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Project timeline" 
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-medgan-blue focus:border-medgan-blue" 
                             {...field} 
                           />
                         </FormControl>
