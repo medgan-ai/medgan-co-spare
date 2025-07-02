@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AiSolutions from "./pages/AiSolutions";
 import Careers from "./pages/Careers";
+import ContactPage from './pages/contact';
 import Blog from "./pages/Blog";
 import FAQs from "./pages/FAQs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -27,6 +28,9 @@ const App = () => (
           <Route path="/ai-solutions" element={<AiSolutions />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<ContactPage />} />
+
+          
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />

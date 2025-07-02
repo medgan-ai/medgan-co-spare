@@ -27,60 +27,63 @@ const Navbar = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const handleNavClick = (href: string) => {
-    setMobileMenuOpen(false);
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
-  };
-
   const MobileMenu = () => (
     <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
       <SheetContent side="right" className="w-full sm:max-w-sm p-0 bg-white">
         <div className="flex flex-col h-full justify-center items-center space-y-6 p-8">
           <div className="text-center mb-10">
             <img 
-              src="/images/logo.png" 
+              src="/images/logo4.png" 
               alt="MedGAN Logo" 
               className="h-10 w-auto object-contain"
             />
           </div>
-          <button
-            onClick={() => handleNavClick('#about')}
+          <Link 
+            to="/" 
+            onClick={toggleMobileMenu}
             className="text-xl font-medium text-gray-800 hover:text-medgan-purple transition-colors focus:outline-none focus:text-medgan-purple w-full py-3 text-center border-b border-gray-100 hover:bg-gray-50 rounded-lg"
           >
-            About
-          </button>
-          <button
-            onClick={() => handleNavClick('#features')}
+            Home
+          </Link>
+          <Link 
+            to="/ai-solutions" 
+            onClick={toggleMobileMenu}
             className="text-xl font-medium text-gray-800 hover:text-medgan-purple transition-colors focus:outline-none focus:text-medgan-purple w-full py-3 text-center border-b border-gray-100 hover:bg-gray-50 rounded-lg"
           >
-            Technology
-          </button>
-          <button
-            onClick={() => handleNavClick('#ai-playground')}
+            AI Solutions
+          </Link>
+          <Link 
+            to="/blog" 
+            onClick={toggleMobileMenu}
             className="text-xl font-medium text-gray-800 hover:text-medgan-purple transition-colors focus:outline-none focus:text-medgan-purple w-full py-3 text-center border-b border-gray-100 hover:bg-gray-50 rounded-lg"
           >
-            AI Playground
-          </button>
-          <button
-            onClick={() => handleNavClick('#testimonials')}
+            Blog
+          </Link>
+          <Link 
+            to="/careers" 
+            onClick={toggleMobileMenu}
             className="text-xl font-medium text-gray-800 hover:text-medgan-purple transition-colors focus:outline-none focus:text-medgan-purple w-full py-3 text-center border-b border-gray-100 hover:bg-gray-50 rounded-lg"
           >
-            Testimonials
-          </button>
-          <button
-            onClick={() => handleNavClick('#contact')}
+            Careers
+          </Link>
+          <Link 
+            to="/faqs" 
+            onClick={toggleMobileMenu}
+            className="text-xl font-medium text-gray-800 hover:text-medgan-purple transition-colors focus:outline-none focus:text-medgan-purple w-full py-3 text-center border-b border-gray-100 hover:bg-gray-50 rounded-lg"
+          >
+            FAQs
+          </Link>
+          <Link 
+            to="/contact" 
+            onClick={toggleMobileMenu}
             className="text-xl font-medium text-gray-800 hover:text-medgan-purple transition-colors focus:outline-none focus:text-medgan-purple w-full py-3 text-center border-b border-gray-100 hover:bg-gray-50 rounded-lg"
           >
             Contact
-          </button>
-          <Link to="/ai-solutions" onClick={toggleMobileMenu} className="w-full mt-6">
+          </Link>
+          
+          <Link to="/contact" onClick={toggleMobileMenu} className="w-full mt-6">
             <Button className="bg-medgan-dark-blue hover:bg-medgan-purple transition-colors px-8 py-4 text-base w-full rounded-lg">
-              Get Started
+              Get In Touch
             </Button>
           </Link>
         </div>
@@ -100,9 +103,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 sm:h-auto">
           <Link to="/" className="flex items-center">
             <img 
-              src="/images/logo.png" 
+              src="/images/logo4.png" 
               alt="MedGAN Logo" 
-              className={`h-10 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 ${
+              className={`h-11 sm:h-10 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 ${
                 isScrolled ? "scale-95" : "scale-100"
               }`}
             />
@@ -110,39 +113,45 @@ const Navbar = () => {
 
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <button
-              onClick={() => handleNavClick('#about')}
+            <Link
+              to="/"
               className="text-gray-800 hover:text-medgan-purple transition-colors font-medium focus:outline-none focus:text-medgan-purple"
             >
-              About
-            </button>
-            <button
-              onClick={() => handleNavClick('#features')}
+              Home
+            </Link>
+            <Link
+              to="/ai-solutions"
               className="text-gray-800 hover:text-medgan-purple transition-colors font-medium focus:outline-none focus:text-medgan-purple"
             >
-              Technology
-            </button>
-            <button
-              onClick={() => handleNavClick('#ai-playground')}
+              AI Solutions
+            </Link>
+            <Link
+              to="/blog"
               className="text-gray-800 hover:text-medgan-purple transition-colors font-medium focus:outline-none focus:text-medgan-purple"
             >
-              AI Playground
-            </button>
-            <button
-              onClick={() => handleNavClick('#testimonials')}
+              Blog
+            </Link>
+            <Link
+              to="/careers"
               className="text-gray-800 hover:text-medgan-purple transition-colors font-medium focus:outline-none focus:text-medgan-purple"
             >
-              Testimonials
-            </button>
-            <button
-              onClick={() => handleNavClick('#contact')}
+              Careers
+            </Link>
+            <Link
+              to="/faqs"
+              className="text-gray-800 hover:text-medgan-purple transition-colors font-medium focus:outline-none focus:text-medgan-purple"
+            >
+              FAQs
+            </Link>
+            <Link
+              to="/contact"
               className="text-gray-800 hover:text-medgan-purple transition-colors font-medium focus:outline-none focus:text-medgan-purple"
             >
               Contact
-            </button>
-            <Link to="/ai-solutions">
+            </Link>
+            <Link to="/contact">
               <Button className="bg-medgan-dark-blue hover:bg-medgan-purple transition-colors px-8 py-3 text-base">
-                Get Started
+                Get In Touch
               </Button>
             </Link>
           </div>

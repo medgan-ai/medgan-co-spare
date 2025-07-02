@@ -13,12 +13,11 @@ interface StatProps {
 
 type WebsiteStats = Tables<'website_stats'>;
 
-// Fallback stats in case database is empty
 const fallbackStats = [
-  { value: 98, label: "Client Satisfaction", suffix: "%" },
-  { value: 150, label: "AI Models Deployed", prefix: "+" },
-  { value: 35, label: "Industries Served", prefix: "+" },
-  { value: 10000, label: "Data Points Analyzed", suffix: "K+" },
+  { value: 97, label: "Project Success Rate", suffix: "%" },
+  { value: 12, label: "Custom AI Solutions Developed", prefix: "+" },
+  { value: 5, label: "Industries Engaged", prefix: "+" },
+  { value: 2, label: "Data Points Processed", suffix: "M+" },
 ];
 
 const CounterAnimation = ({ value, prefix, suffix, duration = 2000 }: StatProps) => {
@@ -90,19 +89,33 @@ const StatsCounter = () => {
           console.error("Error fetching stats:", error);
           setStats(fallbackStats);
         } else if (data) {
-          // Convert database data to display format
           const formattedStats = [
-            { value: data.clientSatisfaction, label: "Client Satisfaction", suffix: "%" },
-            { value: data.projectsDelivered, label: "Projects Delivered", prefix: "+" },
-            { value: data.enterpriseClients, label: "Enterprise Clients", prefix: "+" },
-            { value: data.countersViewed, label: "Data Points Analyzed", suffix: "K+" },
+            { 
+              value: data.project_success_rate || 97, 
+              label: "Project Success Rate", 
+              suffix: "%" 
+            },
+            { 
+              value: data.custom_ai_solutions || 12, 
+              label: "Custom AI Solutions Developed", 
+              prefix: "+" 
+            },
+            { 
+              value: data.industries_engaged || 5, 
+              label: "Industries Engaged", 
+              prefix: "+" 
+            },
+            { 
+              value: data.data_points_processed ? Math.round(data.data_points_processed / 1000000) : 2, 
+              label: "Data Points Processed", 
+              suffix: "M+" 
+            },
           ];
           setStats(formattedStats);
           
-          // Update the counters viewed count
           await supabase
             .from('website_stats')
-            .update({ countersViewed: data.countersViewed + 1 })
+            .update({ views: (data.views || 0) + 1 })
             .eq('id', data.id);
         }
       } catch (error) {
@@ -117,26 +130,32 @@ const StatsCounter = () => {
   }, []);
   
   return (
-    <section className="section-padding bg-medgan-blue text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-r from-medgan-dark-blue to-medgan-purple text-white relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/placeholder.svg')] opacity-5"></div>
-        <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-white/10 blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-72 h-72 rounded-full bg-white/10 blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-white/10"></div>
+        <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-white/10 blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-20 left-20 w-72 h-72 rounded-full bg-white/10 blur-3xl animate-float"></div>
       </div>
       
-      <div className="section-container relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 animate-on-scroll">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className={`font-bold mb-2 ${isMobile ? 'text-3xl' : 'text-4xl md:text-5xl'}`}>
+            <div 
+              key={index} 
+              className="text-center p-6 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300"
+            >
+              <div className={`font-bold mb-3 ${isMobile ? 'text-4xl' : 'text-5xl'}`}>
                 <CounterAnimation 
                   value={stat.value} 
                   label={stat.label}
                   prefix={stat.prefix}
                   suffix={stat.suffix}
+                  duration={2500}
                 />
               </div>
-              <p className={`text-white/80 ${isMobile ? 'text-sm' : 'text-base'}`}>{stat.label}</p>
+              <p className={`text-white/90 ${isMobile ? 'text-base' : 'text-lg'}`}>
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>
