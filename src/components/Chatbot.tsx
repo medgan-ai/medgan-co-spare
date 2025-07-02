@@ -117,11 +117,9 @@ const Chatbot: React.FC = () => {
       setActiveSection("home");
     }
   }, [isOpen]);
-
   // Handle search function
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Searching for:", searchQuery);
     // Here you would implement the actual search functionality
     setSearchQuery("");
   };

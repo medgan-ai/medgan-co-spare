@@ -30,10 +30,8 @@ const HelpSection: React.FC = () => {
       articleCount: 23
     }
   ];
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Searching for help:", searchQuery);
     // Here you would implement the actual search functionality
     setSearchQuery("");
   };
