@@ -1,5 +1,4 @@
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
@@ -11,12 +10,28 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const FAQs = () => {
+  const navigate = useNavigate();
+  const [showPhoneNumber, setShowPhoneNumber] = useState(false);
+
   useEffect(() => {
     const cleanup = observeScrollAnimation();
     return cleanup;
   }, []);
+
+  const handleContactSupport = () => {
+    navigate("/contact");
+  };
+
+  const handleScheduleCall = () => {
+    setShowPhoneNumber(true);
+    // Auto-hide the phone number after 10 seconds
+    setTimeout(() => {
+      setShowPhoneNumber(false);
+    }, 10000);
+  };
   
   const faqCategories = [
     {
@@ -155,11 +170,33 @@ const FAQs = () => {
             <p className="text-lg text-gray-600 mb-8">
               Our team is here to help. Contact us for personalized assistance with any questions or inquiries you may have.
             </p>
+            
+            {/* Phone Number Display */}
+            {showPhoneNumber && (
+              <div className="mb-6 p-4 bg-white rounded-lg shadow-lg border border-medgan-blue/20 animate-fade-in">
+                <h3 className="text-lg font-semibold text-medgan-blue mb-2">Call us now:</h3>
+                <a 
+                  href="tel:+962785120140" 
+                  className="text-2xl font-bold text-medgan-dark-blue hover:text-medgan-blue transition-colors"
+                >
+                  +962 785 120 140
+                </a>
+                <p className="text-sm text-gray-600 mt-2">Click to call directly</p>
+              </div>
+            )}
+            
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button className="bg-medgan-blue hover:bg-medgan-dark-blue text-white px-6 py-5">
+              <Button 
+                onClick={handleContactSupport}
+                className="bg-medgan-blue hover:bg-medgan-dark-blue text-white px-6 py-5"
+              >
                 Contact Support
               </Button>
-              <Button variant="outline" className="border-medgan-blue text-medgan-blue hover:bg-medgan-light-blue px-6 py-5">
+              <Button 
+                onClick={handleScheduleCall}
+                variant="outline" 
+                className="border-medgan-blue text-medgan-blue hover:bg-medgan-light-blue px-6 py-5"
+              >
                 Schedule a Call
               </Button>
             </div>

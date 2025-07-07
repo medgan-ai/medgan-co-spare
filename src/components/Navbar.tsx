@@ -74,11 +74,11 @@ const Navbar = () => {
             FAQs
           </Link>
           <Link 
-            to="/contact" 
+            to="/about-us" 
             onClick={toggleMobileMenu}
             className="text-xl font-medium text-gray-800 hover:text-medgan-purple transition-colors focus:outline-none focus:text-medgan-purple w-full py-3 text-center border-b border-gray-100 hover:bg-gray-50 rounded-lg"
           >
-            Contact
+            About Us
           </Link>
           
           <Link to="/contact" onClick={toggleMobileMenu} className="w-full mt-6">
@@ -144,10 +144,10 @@ const Navbar = () => {
               FAQs
             </Link>
             <Link
-              to="/contact"
+              to="/about-us"
               className="text-gray-800 hover:text-medgan-purple transition-colors font-medium focus:outline-none focus:text-medgan-purple"
             >
-              Contact
+              About Us
             </Link>
             <Link to="/contact">
               <Button className="bg-medgan-dark-blue hover:bg-medgan-purple transition-colors px-8 py-3 text-base">

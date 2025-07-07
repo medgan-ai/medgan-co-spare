@@ -40,6 +40,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPhoneNumber, setShowPhoneNumber] = useState(false);
   const { toast } = useToast();
 
   // Add scroll animation effect like FAQ page
@@ -109,6 +110,10 @@ const ContactPage = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleCallNow = () => {
+    setShowPhoneNumber(!showPhoneNumber);
   };
 
   return (
@@ -386,13 +391,28 @@ const ContactPage = () => {
           <div className="container max-w-3xl mx-auto text-center animate-on-scroll">
             <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-lg text-gray-600 mb-8">
-              Our team is ready to help you transform your business with AI. Schedule a consultation or call us directly to discuss your project needs.
+              Our team is ready to help you transform your business with AI. Call us directly to discuss your project needs.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button className="bg-medgan-blue hover:bg-medgan-dark-blue text-white px-6 py-5">
-                Schedule Consultation
-              </Button>
-              <Button variant="outline" className="border-medgan-blue text-medgan-blue hover:bg-medgan-light-blue px-6 py-5">
+            
+            {/* Phone Number Display */}
+            {showPhoneNumber && (
+              <div className="mb-6 p-4 bg-white rounded-lg shadow-lg border border-medgan-blue/20 animate-fade-in">
+                <h3 className="text-lg font-semibold text-medgan-blue mb-2">Call us now:</h3>
+                <a 
+                  href="tel:+962785120140" 
+                  className="text-2xl font-bold text-medgan-dark-blue hover:text-medgan-blue transition-colors"
+                >
+                  +962 785 120 140
+                </a>
+                <p className="text-sm text-gray-600 mt-2">Click to call directly</p>
+              </div>
+            )}
+            
+            <div className="flex justify-center">
+              <Button 
+                onClick={handleCallNow}
+                className="bg-medgan-blue hover:bg-medgan-dark-blue text-white px-6 py-5"
+              >
                 Call Now
               </Button>
             </div>

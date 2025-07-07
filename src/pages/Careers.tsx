@@ -11,6 +11,11 @@ const Careers = () => {
     const cleanup = observeScrollAnimation();
     return cleanup;
   }, []);
+
+  const handleSubmitResume = () => {
+    // Navigate to contact page
+    window.location.href = "/contact";
+  };
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -94,12 +99,12 @@ const Careers = () => {
               <p className="text-lg text-gray-600 mb-8">
                 We don't have any job openings at the moment, but we're always growing and looking for exceptional talent to join our team. We encourage you to check back regularly or submit your resume for future opportunities.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-medgan-blue hover:bg-medgan-dark-blue text-white px-8 py-6">
+              <div className="flex justify-center">
+                <Button 
+                  onClick={handleSubmitResume}
+                  className="bg-medgan-blue hover:bg-medgan-dark-blue text-white px-8 py-6"
+                >
                   Submit Your Resume
-                </Button>
-                <Button variant="outline" className="border-medgan-blue text-medgan-blue hover:bg-medgan-blue hover:text-white px-8 py-6">
-                  Get Notified of Openings
                 </Button>
               </div>
             </div>
@@ -164,11 +169,11 @@ const Careers = () => {
               <p className="text-xl opacity-90 mb-8">
                 Want to be the first to know when new positions become available? Join our talent network and we'll notify you when opportunities that match your skills open up.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-white text-medgan-blue hover:bg-gray-100 px-8 py-6 text-lg">
-                  Join Our Talent Network
-                </Button>
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-medgan-blue px-8 py-6 text-lg">
+              <div className="flex justify-center">
+                <Button 
+                  onClick={() => window.open('https://www.linkedin.com/company/medgan', '_blank')}
+                  className="bg-white text-medgan-blue hover:bg-gray-100 hover:text-medgan-blue px-8 py-6 text-lg"
+                >
                   Follow Us on LinkedIn
                 </Button>
               </div>

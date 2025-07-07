@@ -1,10 +1,10 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Linkedin, Youtube, X, Instagram, Globe, Mail } from "lucide-react";
 
 const Footer = () => {
-  return (    <footer className="bg-white py-12 px-6 md:px-8 border-t border-gray-100">
+  return (
+    <footer className="bg-white py-12 px-6 md:px-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
           <div className="sm:col-span-2 lg:col-span-1">
@@ -83,19 +83,12 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-            <div>
+          
+          <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <button 
-                  onClick={() => {
-                    const element = document.querySelector('#about');
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-gray-600 hover:text-medgan-blue transition-colors focus:outline-none focus:text-medgan-blue text-left"
-                >
-                  About Us
-                </button>
+                <Link to="/about-us" className="text-gray-600 hover:text-medgan-blue transition-colors">About Us</Link>
               </li>
               <li>
                 <Link to="/careers" className="text-gray-600 hover:text-medgan-blue transition-colors">Careers</Link>
@@ -113,15 +106,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Support</h3>
             <ul className="space-y-3">
               <li>
-                <button 
-                  onClick={() => {
-                    const element = document.querySelector('#contact');
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-gray-600 hover:text-medgan-blue transition-colors focus:outline-none focus:text-medgan-blue text-left"
-                >
-                  Contact Us
-                </button>
+                <Link to="/contact" className="text-gray-600 hover:text-medgan-blue transition-colors">Contact Us</Link>
               </li>
               <li>
                 <Link to="/faqs" className="text-gray-600 hover:text-medgan-blue transition-colors">FAQs</Link>

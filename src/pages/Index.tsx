@@ -5,7 +5,6 @@ import AboutSection from "@/components/AboutSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import StatsCounter from "@/components/StatsCounter";
 import FAQAccordion from "@/components/FAQAccordion";
-import ContactSection from "@/components/ContactSection";
 import NewsletterSubscription from "@/components/NewsletterSubscription";
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
@@ -28,7 +27,7 @@ const Index = () => {
         <FeaturesSection />
         <NewsletterSubscription />
         <FAQAccordion />
-        <ContactSection />      </main>
+              </main>
       <Footer />
       <BackToTop />
       <Toaster />
