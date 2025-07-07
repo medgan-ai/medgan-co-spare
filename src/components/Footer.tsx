@@ -1,8 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Facebook, Linkedin, Youtube, X, Instagram, Globe, Mail } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Facebook, Linkedin, Youtube, X, Instagram, Globe, Mail, Phone } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Footer = () => {
+  const location = useLocation();
+  const [showEmail, setShowEmail] = useState(false);
+  const [showWebsite, setShowWebsite] = useState(false);
+  const [showPhone, setShowPhone] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  const toggleEmail = () => {
+    setShowEmail(!showEmail);
+    if (showWebsite) setShowWebsite(false);
+    if (showPhone) setShowPhone(false);
+  };
+
+  const toggleWebsite = () => {
+    setShowWebsite(!showWebsite);
+    if (showEmail) setShowEmail(false);
+    if (showPhone) setShowPhone(false);
+  };
+
+  const togglePhone = () => {
+    setShowPhone(!showPhone);
+    if (showEmail) setShowEmail(false);
+    if (showWebsite) setShowWebsite(false);
+  };
+
   return (
     <footer className="bg-white py-12 px-6 md:px-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto">
@@ -16,70 +44,138 @@ const Footer = () => {
             <p className="text-gray-600 mb-6 max-w-md leading-relaxed">
               Revolutionizing industries with next-generation AI solutions, we leverage advanced generative models and deep expertise to deliver transformative tools that empower professionals.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <a 
-                href="https://www.linkedin.com/company/medgan" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
-                aria-label="Follow us on LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://www.instagram.com/medgan.ai" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
-                aria-label="Follow us on Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://x.com/medganai" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
-                aria-label="Follow us on X (Twitter)"
-              >
-                <X className="w-5 h-5" />
-              </a>
-              <a 
-                href="http://www.medgan.co" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
-                aria-label="Visit our website"
-              >
-                <Globe className="w-5 h-5" />
-              </a>
-              <a 
-                href="mailto:contact@medgan.co" 
-                className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-all duration-300 transform hover:scale-110"
-                aria-label="Email us at contact@medgan.co"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
+            
+            <div className="flex items-center space-x-2">
+              {/* Email */}
+              <div className="flex items-center">
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={toggleEmail}
+                  className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors duration-300"
+                  aria-label="Show email address"
+                >
+                  <Mail className="w-5 h-5" />
+                </motion.button>
+                <AnimatePresence>
+                  {showEmail && (
+                    <motion.span
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: 'auto' }}
+                      exit={{ opacity: 0, width: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="ml-2 overflow-hidden whitespace-nowrap text-sm bg-medgan-light-blue text-medgan-blue px-2 py-1 rounded"
+                    >
+                      contact@medgan.co
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </div>
+              
+              {/* Website */}
+              <div className="flex items-center">
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={toggleWebsite}
+                  className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors duration-300"
+                  aria-label="Show website URL"
+                >
+                  <Globe className="w-5 h-5" />
+                </motion.button>
+                <AnimatePresence>
+                  {showWebsite && (
+                    <motion.span
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: 'auto' }}
+                      exit={{ opacity: 0, width: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="ml-2 overflow-hidden whitespace-nowrap text-sm bg-medgan-light-blue text-medgan-blue px-2 py-1 rounded"
+                    >
+                      medgan.co
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </div>
+              
+              {/* Phone */}
+              <div className="flex items-center">
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={togglePhone}
+                  className="w-10 h-10 rounded-full bg-medgan-light-blue flex items-center justify-center text-medgan-blue hover:bg-medgan-blue hover:text-white transition-colors duration-300"
+                  aria-label="Show phone number"
+                >
+                  <Phone className="w-5 h-5" />
+                </motion.button>
+                <AnimatePresence>
+                  {showPhone && (
+                    <motion.span
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: 'auto' }}
+                      exit={{ opacity: 0, width: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="ml-2 overflow-hidden whitespace-nowrap text-sm bg-medgan-light-blue text-medgan-blue px-2 py-1 rounded"
+                    >
+                      +962 785 120 140
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
           
+          {/* Rest of your footer content remains the same */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Solutions</h3>
+            <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/ai-solutions" className="text-gray-600 hover:text-medgan-blue transition-colors">AI Solutions</Link>
+                <a 
+                  href="https://www.linkedin.com/company/medgan" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-600 hover:text-medgan-blue transition-colors"
+                >
+                  <Linkedin className="w-4 h-4 mr-2" /> LinkedIn
+                </a>
               </li>
               <li>
-                <Link to="/ai-solutions" className="text-gray-600 hover:text-medgan-blue transition-colors">Data Imaging</Link>
+                <a 
+                  href="https://www.facebook.com/company.medganai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-600 hover:text-medgan-blue transition-colors"
+                >
+                  <Facebook className="w-4 h-4 mr-2" /> Facebook
+                </a>
               </li>
               <li>
-                <Link to="/ai-solutions" className="text-gray-600 hover:text-medgan-blue transition-colors">Data Analysis</Link>
+                <a 
+                  href="https://www.instagram.com/medgan.ai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-600 hover:text-medgan-blue transition-colors"
+                >
+                  <Instagram className="w-4 h-4 mr-2" /> Instagram
+                </a>
               </li>
               <li>
-                <Link to="/ai-solutions" className="text-gray-600 hover:text-medgan-blue transition-colors">Research Tools</Link>
+                <a 
+                  href="https://x.com/medganai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-600 hover:text-medgan-blue transition-colors"
+                >
+                  <X className="w-4 h-4 mr-2" /> X (Twitter)
+                </a>
               </li>
               <li>
-                <Link to="/ai-solutions" className="text-gray-600 hover:text-medgan-blue transition-colors">All Fields Integration</Link>
+                <a 
+                  href="https://www.youtube.com/@MedGANs" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-600 hover:text-medgan-blue transition-colors"
+                >
+                  <Youtube className="w-4 h-4 mr-2" /> YouTube
+                </a>
               </li>
             </ul>
           </div>
@@ -89,6 +185,9 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link to="/about-us" className="text-gray-600 hover:text-medgan-blue transition-colors">About Us</Link>
+              </li>
+              <li>
+                <Link to="/ai-solutions" className="text-gray-600 hover:text-medgan-blue transition-colors">AI Solutions</Link>
               </li>
               <li>
                 <Link to="/careers" className="text-gray-600 hover:text-medgan-blue transition-colors">Careers</Link>

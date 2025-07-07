@@ -1,14 +1,12 @@
-
 import React, { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, Home, HelpCircle, Search, ChevronRight } from "lucide-react";
+import { MessageSquare, Home, HelpCircle, Search, ChevronRight, Mail, MapPin, Calendar } from "lucide-react";
 import { Message, Language, languageSelectionMessage } from "@/types/chatbot";
 import { generateAIResponse, initialBotMessages } from "@/utils/aiService";
 import ChatHeader from "./chatbot/ChatHeader";
 import MessageList from "./chatbot/MessageList";
 import MessageInput from "./chatbot/MessageInput";
 import LanguageSelector from "./chatbot/LanguageSelector";
-import HelpSection from "./chatbot/HelpSection";
 
 // Define suggested options
 const suggestedOptions = [
@@ -17,6 +15,125 @@ const suggestedOptions = [
   { id: 3, text: "Complete your profile" },
   { id: 4, text: "Notchup talent vetting" },
 ];
+
+// Help section component
+const HelpSection = () => {
+  const [activeTopic, setActiveTopic] = useState<number | null>(null);
+
+  const helpTopics = [
+    {
+      title: "Company Information",
+      items: [
+        "What is MedGAN AI?",
+        "When was MedGAN founded?",
+        "Where is MedGAN located?"
+      ],
+      solutions: [
+        "MedGAN is a cutting-edge company specializing in producing AI solutions and developing agentic AI systems.",
+        "MedGAN was founded in March 2025 with a vision to revolutionize AI technology.",
+        "Our headquarters are located in Amman, Jordan, where we develop our innovative AI solutions."
+      ],
+      icons: [
+        <HelpCircle className="h-4 w-4 mr-2" />,
+        <Calendar className="h-4 w-4 mr-2" />,
+        <MapPin className="h-4 w-4 mr-2" />
+      ]
+    },
+    {
+      title: "Career Opportunities",
+      items: [
+        "How to apply for a job?",
+        "What positions are available?",
+        "What's the hiring process?"
+      ],
+      solutions: [
+        "To apply for a job, visit our career page, browse available positions, and submit your application through our online portal.",
+        "We regularly update our career page with open positions in AI development, research, and operations. Check back often for new opportunities.",
+        "Our hiring process typically includes resume screening, technical assessments, and interviews with our team members."
+      ],
+      icons: [
+        <ChevronRight className="h-4 w-4 mr-2" />,
+        <Search className="h-4 w-4 mr-2" />,
+        <MessageSquare className="h-4 w-4 mr-2" />
+      ]
+    },
+    {
+      title: "Our Technology",
+      items: [
+        "What is Agentic AI?",
+        "What industries do you serve?",
+        "Can I demo your products?"
+      ],
+      solutions: [
+        "Agentic AI refers to autonomous systems that can perceive, reason, and act independently to achieve complex goals.",
+        "We serve multiple industries including healthcare, finance, and enterprise solutions with our customizable AI systems.",
+        "Yes! Contact our sales team to schedule a demo of our AI solutions tailored to your business needs."
+      ],
+      icons: [
+        <HelpCircle className="h-4 w-4 mr-2" />,
+        <Home className="h-4 w-4 mr-2" />,
+        <Mail className="h-4 w-4 mr-2" />
+      ]
+    }
+  ];
+
+  const handleTopicClick = (index: number) => {
+    setActiveTopic(activeTopic === index ? null : index);
+  };
+
+  const handleContactClick = () => {
+    // Replace '/contact' with your actual contact page route
+    window.location.href = '/contact';
+  };
+
+  return (
+    <div className="px-4 py-6 h-full overflow-y-auto">
+      <h2 className="text-2xl font-bold mb-6">Help Center</h2>
+      
+      <div className="space-y-6">
+        {helpTopics.map((topic, index) => (
+          <div key={index} className="space-y-2">
+            <h3 className="text-lg font-semibold">{topic.title}</h3>
+            <ul className="space-y-2">
+              {topic.items.map((item, itemIndex) => (
+                <li 
+                  key={itemIndex} 
+                  className="p-3 bg-gray-100 rounded-lg hover:bg-gray-200 cursor-pointer transition-colors"
+                  onClick={() => handleTopicClick(itemIndex)}
+                >
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      {topic.icons[itemIndex]}
+                      <span>{item}</span>
+                    </div>
+                    <ChevronRight className={`h-4 w-4 transition-transform ${activeTopic === itemIndex ? 'rotate-90' : ''}`} />
+                  </div>
+                  {activeTopic === itemIndex && (
+                    <div className="mt-2 p-2 bg-white rounded-md text-sm">
+                      {topic.solutions[itemIndex]}
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      
+      <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+        <h3 className="font-semibold mb-2">Still need help?</h3>
+        <p className="text-sm mb-3">Contact our team for more information about our AI solutions.</p>
+        <Button 
+          className="w-full gap-2"
+          onClick={handleContactClick}
+        >
+          <Mail className="h-4 w-4" />
+          Contact Us
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -117,6 +234,7 @@ const Chatbot: React.FC = () => {
       setActiveSection("home");
     }
   }, [isOpen]);
+
   // Handle search function
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
