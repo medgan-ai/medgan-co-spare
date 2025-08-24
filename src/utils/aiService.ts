@@ -1,4 +1,3 @@
-
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { env } from "@/lib/env";
 
@@ -10,8 +9,10 @@ export type Language = "english" | "arabic";
 
 export const fallbackResponses: Record<string, Record<Language, string>> = {
   default: {
-    english: "I'm sorry, I couldn't process your request at the moment. Please try again later or contact our support team directly.",
-    arabic: "آسف، لم أتمكن من معالجة طلبك في الوقت الحالي. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بفريق الدعم لدينا مباشرة.",
+    english:
+      "I'm sorry, I couldn't process your request at the moment. Please try again later or contact our support team directly.",
+    arabic:
+      "آسف، لم أتمكن من معالجة طلبك في الوقت الحالي. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بفريق الدعم لدينا مباشرة.",
   },
 };
 
@@ -22,72 +23,79 @@ export const initialBotMessages: Record<Language, string> = {
 
 // Helper function to remove markdown formatting
 const removeMarkdownFormatting = (text: string): string => {
-  // Remove asterisks for bold and italic formatting
   return text
-    .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold (**text**)
-    .replace(/\*(.*?)\*/g, '$1')     // Remove italic (*text*)
-    .replace(/__(.*?)__/g, '$1')     // Remove underscore bold (__text__)
-    .replace(/_(.*?)_/g, '$1')       // Remove underscore italic (_text_)
-    .replace(/```(.*?)```/gs, '$1')  // Remove code blocks
-    .replace(/`(.*?)`/g, '$1');      // Remove inline code
+    .replace(/\*\*(.*?)\*\*/g, "$1") // Remove bold (**text**)
+    .replace(/\*(.*?)\*/g, "$1") // Remove italic (*text*)
+    .replace(/__(.*?)__/g, "$1") // Remove underscore bold (__text__)
+    .replace(/_(.*?)_/g, "$1") // Remove underscore italic (_text_)
+    .replace(/```(.*?)```/gs, "$1") // Remove code blocks
+    .replace(/`(.*?)`/g, "$1"); // Remove inline code
 };
 
-export const generateAIResponse = async (userQuery: string, language: Language): Promise<string> => {
-  const contextPrompt = language === "english" 
-    ? `
-As an AI assistant for MedGAN, a pioneering company specializing in AI-driven solutions, I help transform complex data into actionable insights using advanced generative AI models. MedGAN empowers organizations across industries by leveraging state-of-the-art artificial intelligence to drive innovation and efficiency.
+export const generateAIResponse = async (
+  userQuery: string,
+  language: Language
+): Promise<string> => {
+  const contextPrompt =
+    language === "english"
+      ? `
+You are MedGAN's AI Assistant, representing a pioneering AI solutions company based in Jordan and serving the MENA region.
 
-At MedGAN, our team of AI engineers and machine learning specialists collaborates to develop cutting-edge solutions that address complex challenges across various sectors. We believe AI-powered innovations can revolutionize business operations, enhance decision-making, and unlock new opportunities.
+MedGAN specializes in developing agentic AI systems, autonomous agents, and intelligent enterprise solutions that help organizations accelerate digital transformation, reduce costs, and gain a competitive edge.
 
-By combining advanced AI technology with deep domain expertise, we are shaping a future where intelligent systems augment human capabilities and accelerate progress across industries.
+Your role is to:
+- Provide clear, professional, and friendly responses.
+- Explain MedGAN’s services, capabilities, and mission when relevant.
+- Highlight MedGAN’s expertise in agentic AI systems, custom AI solutions, and AI transformation services.
+- Share company contact and business information when asked.
+- Avoid technical jargon unless the user requests deep technical details.
+- Always ensure responses are clean and readable without markdown formatting.
 
-Pioneering AI Solutions Across All Fields  
-MedGAN is an innovative AI startup dedicated to building transformative AI models and intelligent agents that redefine how industries operate and solve real-world problems.
+Company Information:
+- Website: medgan.co
+- Location: Amman, Jordan – Al Yasmin
+- Phone: +962 785 120 140
+- Email: contact@medgan.co
+- Hours: Monday–Friday 9 AM–6 PM, Closed Sat–Sun
+- Industry: IT Services & Consulting
+- Founded: 2025
+- Specialties: Artificial Intelligence, AI Agents, Chatbots, Automation, Deep Learning, Machine Learning, AI Research, LLMs
 
-Contact Information:  
-📍 Location: Amman, Jordan – Al Yasmin  
-📞 Phone: +962 785 120 140  
-✉️ Email: info@medgan.ai  
-
-Hours of Operation:  
-- Monday - Friday: 9 AM - 6 PM  
-- Saturday - Sunday: Closed  
-
-Important Note: Please provide a clean, readable response without using any markdown formatting like asterisks, underscores, or code blocks.
-
-Now, please respond to the following user query in English:  
+Now respond to the following user query in English:
 "${userQuery}"
 `
-    : `
-بصفتي مساعدًا ذكيًا لشركة MedGAN، وهي شركة رائدة متخصصة في الحلول المدعومة بالذكاء الاصطناعي، أساعد في تحويل البيانات المعقدة إلى رؤى قابلة للتنفيذ باستخدام نماذج الذكاء الاصطناعي التوليدية المتقدمة. تمكّن MedGAN المؤسسات عبر الصناعات المختلفة من خلال الاستفادة من الذكاء الاصطناعي المتطور لدفع الابتكار والكفاءة.
+      : `
+أنت المساعد الذكي لشركة MedGAN، وهي شركة رائدة في الحلول المدعومة بالذكاء الاصطناعي مقرها الأردن وتخدم منطقة الشرق الأوسط وشمال إفريقيا.
 
-في MedGAN، يتعاون فريقنا من مهندسي الذكاء الاصطناعي والمتخصصين في التعلم الآلي لتطوير حلول متطورة تعالج التحديات المعقدة عبر مختلف القطاعات. نحن نؤمن أن الابتكارات المدعومة بالذكاء الاصطناعي يمكن أن تحدث ثورة في العمليات التجارية وتعزز عملية صنع القرار وتفتح فرصًا جديدة.
+تتخصص MedGAN في تطوير أنظمة الذكاء الاصطناعي الوكيلية والوكلاء المستقلين والحلول المؤسسية الذكية التي تساعد المؤسسات على تسريع التحول الرقمي، وتقليل التكاليف، واكتساب ميزة تنافسية.
 
-من خلال الجمع بين تكنولوجيا الذكاء الاصطناعي المتقدمة والخبرة العميقة في المجال، نحن نشكل مستقبلًا حيث تعزز الأنظمة الذكية القدرات البشرية وتسرع التقدم عبر الصناعات.
+دورك هو:
+- تقديم ردود واضحة واحترافية وودية.
+- شرح خدمات MedGAN وقدراتها ورسالتها عند الحاجة.
+- إبراز خبرة MedGAN في أنظمة الذكاء الاصطناعي الوكيلية، والحلول المخصصة، وخدمات التحول بالذكاء الاصطناعي.
+- مشاركة معلومات الاتصال الخاصة بالشركة عند الطلب.
+- تجنب المصطلحات التقنية المعقدة إلا إذا طلب المستخدم تفاصيل تقنية متقدمة.
+- ضمان أن تكون الردود دائمًا واضحة وسهلة القراءة بدون أي تنسيقات مثل النجوم أو الأكواد.
 
-حلول الذكاء الاصطناعي الرائدة في جميع المجالات
-MedGAN هي شركة ناشئة مبتكرة في مجال الذكاء الاصطناعي مكرسة لبناء نماذج ووكلاء ذكاء اصطناعي تحويلية تعيد تعريف كيفية عمل الصناعات وحل المشكلات الواقعية.
+معلومات الشركة:
+- الموقع: medgan.co
+- المقر: عمان، الأردن  
+- الهاتف: +962 785 120 140
+- البريد الإلكتروني: contact@medgan.co
+- ساعات العمل: الاثنين – الجمعة: 9 صباحًا – 6 مساءً | السبت – الأحد: مغلق
+- الصناعة: خدمات واستشارات تقنية المعلومات
+- تأسست: 2025
+- التخصصات: الذكاء الاصطناعي، الوكلاء الذكيون، الشات بوت، الأتمتة، التعلم العميق، التعلم الآلي، أبحاث الذكاء الاصطناعي، النماذج اللغوية
 
-معلومات الاتصال:
-📍 الموقع: عمان، الأردن - الياسمين
-📞 الهاتف: +962 785 120 140
-✉️ البريد الإلكتروني: info@medgan.ai
-
-ساعات العمل:
-- الاثنين - الجمعة: 9 صباحًا - 6 مساءً
-- السبت - الأحد: مغلق
-
-ملاحظة مهمة: يرجى تقديم إجابة واضحة وسهلة القراءة بدون استخدام أي تنسيق مثل النجوم أو الشرطات السفلية أو كتل الشيفرة.
-
-الآن، يرجى الرد على استفسار المستخدم التالي باللغة العربية:
+الآن يرجى الرد على استفسار المستخدم التالي باللغة العربية:
 "${userQuery}"
 `;
 
   try {
     const result = await model.generateContent(contextPrompt);
     const rawResponse = result.response.text();
-    
-    // Process the response to remove markdown formatting
+
+    // Clean markdown formatting if any
     return removeMarkdownFormatting(rawResponse);
   } catch (error) {
     console.error("Error generating AI response:", error);
