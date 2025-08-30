@@ -130,15 +130,6 @@ const HeroSection = () => {
               Learn More
             </Button>
 
-            <Button
-              variant="outline"
-              className="border border-black text-black hover:bg-black/10 px-6 md:px-8 py-4 md:py-6 rounded-lg md:rounded-md transition-all backdrop-blur-sm shadow-lg w-full md:w-auto"
-              onClick={() => {
-                window.location.href = '/contact';
-              }}
-            >
-              Schedule Demo
-            </Button>
           </div>
         </div>
       </div>
